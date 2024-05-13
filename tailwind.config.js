@@ -9,6 +9,9 @@ module.exports = withMT({
     extend: {
       backgroundImage: {
         banner: "url('/src/Assets/banner.png')",
+        hero1: "url('/src/Assets/hero1.webp')",
+        hero2: "url('/src/Assets/hero2.webp')",
+        hero3: "url('/src/Assets/hero3.webp')",
       },
     },
   },
