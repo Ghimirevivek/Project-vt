@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../Assets/logo.jpg';
 import DatepickerComponent from '../DatePicker/DatePickerComponent';
 import { FaUser } from 'react-icons/fa';
@@ -6,17 +6,47 @@ import { FaCar } from 'react-icons/fa';
 import { TbWorld } from 'react-icons/tb';
 
 const Header = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [menuHeight, setMenuHeight] = useState('0vh');
+
+  const handleClick = () => {
+    setToggleMenu(true);
+    setTimeout(() => {
+      setMenuHeight('100vh');
+    }, 10);
+  };
+
   return (
     <header class='shadow-md font-sans tracking-wide relative z-50'>
-      <section class='py-1 bg-[#FF5F00] text-black text-right px-10 flex items-center justify-center'>
-        <p class='text-sm'>
-          <strong class='mx-3'>Address:</strong>SWF New York 185669
-          <strong class='mx-3'>Contact No:</strong>1800333665
+      <section class='py-1 bg-[#FF5F00] text-black text-right px-2 sm:px-10 flex items-center justify-center'>
+        <p class='text-[10px] lg:text-sm '>
+          <strong class='mx-2 sm:mx-3'>Address:</strong>SWF New York 185669
+          <strong class='mx-2 sm:mx-3'>Contact No:</strong>1800333665
         </p>
       </section>
 
       <div className='bg-banner w-full h-full bg-cover bg-center bg-no-repeat '>
         <div class='flex flex-wrap items-center justify-between gap-4 px-10 py-4 bg-transparent min-h-[70px] relative'>
+          <div onClick={handleClick}>
+            <button
+              id='toggleOpen'
+              className='lg:hidden bg-black rounded-full p-1'
+            >
+              <svg
+                class='w-8 h-8'
+                fill='#fff'
+                viewBox='0 0 20 20'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  fill-rule='evenodd'
+                  d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
+                  clip-rule='evenodd'
+                ></path>
+              </svg>
+            </button>
+          </div>
+
           <a href='/'>
             <img src={logo} alt='logo' class='w-[10rem]' />
           </a>
@@ -25,27 +55,7 @@ const Header = () => {
             id='collapseMenu'
             class='max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50 '
           >
-            <button
-              id='toggleClose'
-              class='lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white p-3'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                class='w-4 fill-black'
-                viewBox='0 0 320.591 320.591'
-              >
-                <path
-                  d='M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z'
-                  data-original='#000000'
-                ></path>
-                <path
-                  d='M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z'
-                  data-original='#000000'
-                ></path>
-              </svg>
-            </button>
-
-            <ul class='lg:flex lg:gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 mr-[15rem]'>
+            <ul class='hidden lg:flex lg:gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50 mr-[15rem]'>
               <li class='mb-6 hidden max-lg:block'>
                 <a href='/'>
                   <img src={logo} alt='logo' class='w-[8rem]' />
@@ -108,36 +118,100 @@ const Header = () => {
                 </a>
               </li>
             </ul>
+            {toggleMenu && (
+              <ul
+                style={{
+                  height: menuHeight,
+                  transition: 'height 0.5s ease-in-out',
+                }}
+                className={`fixed top-0 left-0  py-10 text-xl px-6 font-bold w-[70%] sm:w-[50%] lg:w-[30%] bg-white z-50 mr-[15rem] `}
+              >
+                <li class='mb-6 flex items-center justify-start gap-6'>
+                  <div onClick={() => setToggleMenu(false)} className=''>
+                    <button
+                      id='toggleOpen'
+                      className='bg-black rounded-full px-3 py-1 text-white'
+                    >
+                      X
+                    </button>
+                  </div>
+                  <a href='/'>
+                    <img src={logo} alt='logo' class='w-[8rem]' />
+                    <p>Sublimauto</p>
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#FF5F00] block font-bold my-4'
+                  >
+                    Home
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#333] block font-bold my-4'
+                  >
+                    Team
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#333] block font-bold my-4'
+                  >
+                    Feature
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#333] block font-bold my-4'
+                  >
+                    Blog
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#333] block font-bold my-4'
+                  >
+                    About
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#333] block font-bold my-4'
+                  >
+                    Contact
+                  </a>
+                </li>
+                <li class='max-lg:border-b max-lg:py-3 px-3'>
+                  <a
+                    href='/'
+                    class='hover:text-[#FF5F00] text-[#333] block font-bold my-4'
+                  >
+                    Source
+                  </a>
+                </li>
+              </ul>
+            )}
           </div>
           <div className='flex items-center justify-center gap-4 absolute right-[3rem]'>
             <div className='flex items-center justify-center  gap-2 font-semibold'>
-              <FaCar className='text-xl ' />
-              Manage bookings
+              <FaCar className='text-xl' />
+              <span className='hidden lg:block'> Manage bookings</span>
             </div>
             <div className='flex items-center justify-center  gap-2 font-semibold'>
               <TbWorld className='text-xl ' />
-              EN | $
+              <span className='hidden lg:block'> EN | $</span>
             </div>
             <div className='flex items-center justify-center  gap-2 font-semibold'>
               <FaUser className='text-xl ' />
-              Login | Register
+              <span className='hidden lg:block'> Login | Register</span>
             </div>
-          </div>
-          <div class='flex max-lg:ml-auto'>
-            <button id='toggleOpen' class='lg:hidden'>
-              <svg
-                class='w-7 h-7'
-                fill='#000'
-                viewBox='0 0 20 20'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  fill-rule='evenodd'
-                  d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
-                  clip-rule='evenodd'
-                ></path>
-              </svg>
-            </button>
           </div>
         </div>
         <div className='h-[600px] flex items-start justify-center '>
