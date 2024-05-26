@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer class='w-full bg-[#1B1B1A]'>
+    <footer class='w-full bg-[#1B1B1A] px-2 sm:px-0'>
       <div class='mx-auto max-w-7xl'>
         <div class='grid grid-cols-2 lg:grid-cols-4 lg:gap-8 gap-12 pt-12 pb-4 max-w-md mx-auto md:max-w-xl lg:max-w-full'>
           <div class='block'>
@@ -80,7 +80,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div class='flex mt-4 space-x-4 sm:justify-center sm:mt-0 '>
+          <div class='flex mt-4 space-x-2 sm:space-x-4 sm:justify-center sm:mt-0 '>
             <a
               href='/'
               class='w-9 h-9 rounded-full border border-gray-700 flex justify-center items-center hover:border-indigo-600'
@@ -154,7 +154,7 @@ const Footer = () => {
 
         <div class='flex items-center justify-center flex-col lg:space-y-0 space-y-8 lg:justify-between lg:flex-row'>
           {/* <a href='https://pagedone.io/' class='flex justify-center '>Logo</a> */}
-          <div className='flex items-center justify-center sm:gap-2 md:gap:6 xl:gap-12'>
+          <div className='flex items-center justify-center gap-2 md:gap:6 xl:gap-12 flex-wrap'>
             <button
               type='button'
               class='flex items-center justify-center w-[10rem] mt-3 text-white bg-black h-[3.2rem] rounded-xl border border-white'
@@ -209,7 +209,7 @@ const Footer = () => {
         </div>
       </div>
       <div className=' py-6'>
-        <nav className='text-white flex items-center justify-center gap-8'>
+        <nav className='text-white flex items-center justify-center gap-2 text-sm sm:text-[16px] sm:gap-8 flex-wrap'>
           <div>
             <a href='/' target='_self'>
               <span>

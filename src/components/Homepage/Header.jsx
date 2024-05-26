@@ -4,10 +4,12 @@ import DatepickerComponent from '../DatePicker/DatePickerComponent';
 import { FaUser } from 'react-icons/fa';
 import { FaCar } from 'react-icons/fa';
 import { TbWorld } from 'react-icons/tb';
+import Login from '../LoginForm/Login';
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [menuHeight, setMenuHeight] = useState('0vh');
+  const [showModal, setShowModal] = React.useState(false);
 
   const handleClick = () => {
     setToggleMenu(true);
@@ -15,7 +17,9 @@ const Header = () => {
       setMenuHeight('100vh');
     }, 10);
   };
-
+  const handleLoginClick = () => {
+    setShowModal(true);
+  };
   return (
     <header class='shadow-md font-sans tracking-wide relative z-50'>
       <section class='py-1 bg-[#FF5F00] text-black text-right px-2 sm:px-10 flex items-center justify-center'>
@@ -26,7 +30,7 @@ const Header = () => {
       </section>
 
       <div className='bg-banner w-full h-full bg-cover bg-center bg-no-repeat '>
-        <div class='flex flex-wrap items-center justify-start gap-4 px-10 py-4 bg-transparent min-h-[70px] relative'>
+        <div class='flex items-center justify-start gap-4 px-10 py-4 bg-transparent min-h-[70px] relative'>
           <div onClick={handleClick} className='lg:hidden'>
             <button
               id='toggleOpen'
@@ -55,7 +59,7 @@ const Header = () => {
             id='collapseMenu'
             className='ml-auto mr-[30rem] max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50 '
           >
-            <ul class='hidden lg:flex lg:gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50'>
+            <ul class='hidden xl:flex lg:gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50'>
               <li class='mb-6 hidden max-lg:block'>
                 <a href='/'>
                   <img src={logo} alt='logo' class='w-[8rem]' />
@@ -199,8 +203,8 @@ const Header = () => {
               </ul>
             )}
           </div>
-          <div className='flex items-center justify-center gap-4 absolute right-[3rem]'>
-            <div className='flex items-center justify-center  gap-2 font-semibold'>
+          <div className='flex items-center justify-center gap-6 lg:gap-4 absolute right-[3rem] '>
+            <div className='flex items-center justify-center gap-2 font-semibold'>
               <FaCar className='text-xl' />
               <span className='hidden lg:block'> Manage bookings</span>
             </div>
@@ -208,14 +212,18 @@ const Header = () => {
               <TbWorld className='text-xl ' />
               <span className='hidden lg:block'> EN | $</span>
             </div>
-            <div className='flex items-center justify-center  gap-2 font-semibold'>
+            <div
+              onClick={handleLoginClick}
+              className='flex items-center justify-center  gap-2 font-semibold cursor-pointer'
+            >
               <FaUser className='text-xl ' />
               <span className='hidden lg:block'> Login | Register</span>
             </div>
           </div>
+          <Login showModal={showModal} setShowModal={setShowModal} />
         </div>
         <div className='h-[600px] flex items-start justify-center '>
-          <div className='bg-white w-[90%] flex items-center justify-between rounded-lg px-10 py-6'>
+          <div className='bg-white w-[90%] flex items-center justify-between rounded-lg px-10 py-6 flex-wrap'>
             <form class='max-w-lg w-full'>
               <label
                 for='default-search'
@@ -244,7 +252,7 @@ const Header = () => {
                 <input
                   type='search'
                   id='default-search'
-                  class='block w-full p-4 ps-10 text-sm text-gray-900 border-[1px] border-gray-300 rounded-xl bg-gray-50 focus:ring-[#FF5F00] focus:border-[#FF5F00] outline-none placeholder-gray-400'
+                  class='block w-full p-4 ps-8 sm:ps-10 text-[13px] sm:text-sm text-gray-900 border-[1px] border-gray-300 rounded-xl bg-gray-50 focus:ring-[#FF5F00] focus:border-[#FF5F00] outline-none placeholder-gray-400'
                   placeholder='Airport, city or address'
                   required
                 />
