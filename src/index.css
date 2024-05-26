@@ -12,6 +12,24 @@ code {
     monospace;
 }
 
+.modal-transition {
+  transform: scale(1);
+  opacity: 1;
+}
+@keyframes modalShow {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-transition {
+  animation: modalShow 0.3s ease-out forwards;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

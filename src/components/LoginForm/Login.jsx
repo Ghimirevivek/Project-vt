@@ -1,15 +1,15 @@
 import React from 'react';
 import { MdClose } from 'react-icons/md';
 import logo from '../../Assets/logo.jpg';
-
+import '../../index.css';
 const Login = ({ showModal, setShowModal }) => {
   return (
     <>
       {showModal ? (
         <>
           <div className='fixed inset-0 z-50 outline-none focus:outline-none '>
-            <div className='min-h-screen bg-transparent text-gray-900 flex justify-center'>
-              <div className='max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 relative'>
+            <div className='min-h-screen bg-transparent text-gray-900 flex justify-center items-center'>
+              <div className='max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 relative transform transition-transform duration-300 ease-out scale-0 opacity-0 modal-transition'>
                 <button
                   className='absolute top-4 right-4 text-gray-600 hover:text-gray-800'
                   onClick={() => setShowModal(false)}
@@ -110,7 +110,7 @@ const Login = ({ showModal, setShowModal }) => {
           </div>
           <div className='opacity-30 fixed inset-0 z-40 bg-black'></div>
         </>
-      ) : null}{' '}
+      ) : null}
     </>
   );
 };
